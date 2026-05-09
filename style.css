@@ -1,0 +1,288 @@
+
+/* ================= DESIGN TOKENS ================= */
+
+:root {
+  --bg: #0b1220;
+  --panel: rgba(255,255,255,0.04);
+  --panel-hover: rgba(255,255,255,0.07);
+  --stroke: rgba(255,255,255,0.08);
+  --text: #e5e7eb;
+  --muted: rgba(255,255,255,0.6);
+
+  --primary: #6366f1;
+  --secondary: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --radius: 14px;
+  --shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+/* ================= GLOBAL ================= */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 10% 10%, #1e293b 0%, transparent 40%),
+    radial-gradient(circle at 90% 20%, #111827 0%, transparent 50%),
+    var(--bg);
+  color: var(--text);
+}
+
+/* ================= LOGIN ================= */
+
+.auth {
+  block-size: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.auth-card {
+  inline-size: 340px;
+  padding: 26px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+  animation: floatIn 0.6s ease;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-block-end: 18px;
+}
+
+/* ================= INPUTS ================= */
+
+.field {
+  margin-block-end: 12px;
+}
+
+.field label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+input, select {
+  inline-size: 100%;
+  padding: 12px;
+  margin-block-start: 6px;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.03);
+  color: white;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+input:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+  transform: translateY(-1px);
+}
+
+/* ================= BUTTONS ================= */
+
+.btn {
+  inline-size: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.primary {
+  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  color: white;
+  box-shadow: 0 10px 25px rgba(99,102,241,0.25);
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(99,102,241,0.35);
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid var(--stroke);
+  color: var(--text);
+}
+
+.ghost:hover {
+  background: var(--panel-hover);
+}
+
+/* ================= APP LAYOUT ================= */
+
+.app {
+  display: flex;
+  min-block-size: 100vh;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+  inline-size: 240px;
+  padding: 20px;
+  background: var(--panel);
+  border-inline-end: 1px solid var(--stroke);
+  backdrop-filter: blur(20px);
+}
+
+.nav-item {
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-block-end: 6px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: 0.25s ease;
+}
+
+.nav-item:hover {
+  background: var(--panel-hover);
+  color: white;
+  transform: translateX(3px);
+}
+
+.active {
+  background: rgba(99,102,241,0.15);
+  color: white;
+  border-inline-start: 3px solid var(--primary);
+}
+
+/* ================= MAIN ================= */
+
+.main {
+  flex: 1;
+  padding: 28px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 20px;
+}
+
+.user-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  font-size: 12px;
+}
+
+/* ================= TASK CREATOR ================= */
+
+.task-creator {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr auto;
+  gap: 10px;
+  margin-block-start: 10px;
+}
+
+/* ================= BOARD ================= */
+
+.task-board {
+  margin-block-start: 25px;
+  display: grid;
+  gap: 12px;
+}
+
+/* ================= TASK CARD ================= */
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+
+  transition: 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  block-size: 100%;
+  inline-size: 3px;
+  background: transparent;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background: var(--panel-hover);
+}
+
+/* PRIORITY COLORS (GLOW STYLE) */
+
+.high::before {
+  background: var(--danger);
+  box-shadow: 0 0 10px var(--danger);
+}
+
+.medium::before {
+  background: var(--warning);
+  box-shadow: 0 0 10px var(--warning);
+}
+
+.low::before {
+  background: var(--secondary);
+  box-shadow: 0 0 10px var(--secondary);
+}
+
+/* ================= EMPTY STATE ================= */
+
+.empty-state {
+  text-align: center;
+  margin-block-start: 40px;
+  color: var(--muted);
+}
+
+/* ================= MICRO ANIMATIONS ================= */
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-pop {
+  animation: floatIn 0.4s ease;
+}
+
+/* ================= SCROLL BEAUTY ================= */
+
+::-webkit-scrollbar {
+  inline-size: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
